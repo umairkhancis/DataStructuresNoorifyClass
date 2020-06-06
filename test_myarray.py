@@ -125,6 +125,17 @@ class MyArrayTests(unittest.TestCase):
 		self.assertEqual(200, myarray.get(1))
 		self.assertEqual(300, myarray.get(2))
 
+	# def test_insert_when_empty_myarray(self):
+	# 	# Arrange
+	# 	# myarray = MyArray('i')
+
+	# 	# # Act
+	# 	# myarray.insert(100, 0)
+
+	# 	# # Assert
+	# 	# self.assertEqual(1, myarray.size())
+	# 	# self.assertEqual(100, myarray.get(0))
+
 
 
 

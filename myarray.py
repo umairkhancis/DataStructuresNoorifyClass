@@ -53,6 +53,10 @@ class MyArray(object):
 
 	def insert(self, index, value):
 		print("insert")
+		# if index == 0 and 
+
+		# elif index >= self._size:
+		# 	raise IndexError("Out of bound insertion.")
 
 
 	def pop(self, index = -1):
