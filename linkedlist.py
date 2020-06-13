@@ -1,5 +1,3 @@
-import json
-
 class Node(object):
 	def __init__(self, data = None, next = None):
 		super(Node, self).__init__()
@@ -10,9 +8,9 @@ class Node(object):
 		return "{} -> {}".format(self.data, self.next)
 
 class LinkedList(object):
-	def __init__(self, head = None):
+	def __init__(self):
 		super(LinkedList, self).__init__()
-		self.head = head
+		self.head = None
 
 	def size(self):
 		count = 0
@@ -30,7 +28,7 @@ class LinkedList(object):
 				return Node(current_node.data, current_node.next)
 			current_node = current_node.next
 
-		return None
+		raise ValueError("Value not found in LinkedList")
 
 	def update(self, data, new_data):
 		current_node = self.head
@@ -40,27 +38,49 @@ class LinkedList(object):
 				return True
 			current_node = current_node.next
 
-		return False
+		raise ValueError("Value not found in LinkedList")
 
-	def append(self, data):
-		new_node = self.__get_new_node__(data)
+	def push_front(self, data):
+		new_node = self._get_new_node(data)
+		prev_head = self.head
+		self.head = new_node
+		new_node.next = prev_head
+		
+		return True
+
+	def pop_front(self):
+		if not self.head:
+			raise ValueError("Empty LinkedList!")
+		prev_head = self.head
+		self.head = prev_head.next
+
+
+	def push_back(self, data):
+		new_node = self._get_new_node(data)
 
 		if self.head:
-			last_node = self.__get_last_node__()
+			last_node = self._get_last_node()
 			last_node.next = new_node
 		else:
 			self.head = new_node
-			return True
+		
+		return True
 
-	def insert(self, data):
-		new_node = self.__get_new_node__(data)
+	def pop_back(self):
+		if not self.head:
+			raise ValueError("Empty LinkedList!")
 
-		if self.head:
-			last_node = self.__get_last_node__()
-			last_node.next = new_node
+		prev = None
+		curr = self.head
+		while curr.next:
+			prev = curr
+			curr = curr.next
+
+		if not prev:
+			self.head = None
 		else:
-			self.head = new_node
-			return True
+			prev.next = None
+			curr = None
 
 	def remove(self, data):
 		current = self.head
@@ -76,7 +96,7 @@ class LinkedList(object):
 			prev = current
 			current = current.next
 
-		return False
+		raise ValueError("Value not found in LinkedList")
 
 	def _reverse_iterative(self):
 		current = self.head
@@ -106,14 +126,14 @@ class LinkedList(object):
 		self._reverse_recurrsive(curr, curr.next)
 		curr.next = prev
 
-	def __get_new_node__(self, data):
+	def _get_new_node(self, data):
 		node = Node()
 		node.data = data
 		node.next = None
 
 		return node
 
-	def __get_last_node__(self):
+	def _get_last_node(self):
 		last_node = self.head
 		while last_node and last_node.next:
 			last_node = last_node.next
@@ -130,9 +150,3 @@ class LinkedList(object):
 		result += "None"
 
 		return result
-
-
-
-
-
-
