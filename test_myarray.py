@@ -129,8 +129,12 @@ class MyArrayTests(unittest.TestCase):
 		# Arrange
 		myarray = MyArray()
 		
-		# Act & Assert
-		self.assertRaises(IndexError, myarray.insert, 0, 100)
+		# Act
+		myarray.insert(0, 100)
+
+		# Assert
+		self.assertEqual(1, myarray.size())
+		self.assertEqual(100, myarray.get(0))
 
 	def test_insert_when_single_element_in_myarray(self):
 		# Arrange

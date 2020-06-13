@@ -47,9 +47,6 @@ class MyArray(object):
 		return self
 
 	def insert(self, index, value):
-		if index not in range(self._size):
-			raise IndexError("Out of bound index.")
-
 		self._size += 1
 
 		if self._size > self._capacity:
