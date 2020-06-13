@@ -14,7 +14,7 @@ class LinkedListTests(unittest.TestCase):
 
 	def test_size_when_single_item_linkedlist(self):
 		linkedlist = LinkedList()
-		linkedlist.add("Umair")
+		linkedlist.append("Umair")
 		
 		# Act
 		size = linkedlist.size()
@@ -25,8 +25,8 @@ class LinkedListTests(unittest.TestCase):
 	def test_size_when_two_items_linkedlist(self):
 		# Arrange
 		linkedlist = LinkedList()
-		linkedlist.add("Umair")
-		linkedlist.add("Aamir")
+		linkedlist.append("Umair")
+		linkedlist.append("Aamir")
 		
 		# Act
 		size = linkedlist.size()
@@ -37,10 +37,10 @@ class LinkedListTests(unittest.TestCase):
 	def test_size_when_more_than_two_items_linkedlist(self):
 		# Arrange
 		linkedlist = LinkedList()
-		linkedlist.add("Aamir")
-		linkedlist.add("Maria")
-		linkedlist.add("Umair")
-		linkedlist.add("Usman")
+		linkedlist.append("Aamir")
+		linkedlist.append("Maria")
+		linkedlist.append("Umair")
+		linkedlist.append("Usman")
 
 		# Act
 		size = linkedlist.size()
@@ -51,7 +51,7 @@ class LinkedListTests(unittest.TestCase):
 	def test_find_when_item_is_present(self):
 		# Arrange
 		linkedlist = LinkedList()
-		linkedlist.add("Umair")
+		linkedlist.append("Umair")
 
 		# Act
 		found = linkedlist.find("Umair")
@@ -63,7 +63,7 @@ class LinkedListTests(unittest.TestCase):
 	def test_find_when_item_is_not_present(self):
 		# Arrange
 		linkedlist = LinkedList()
-		linkedlist.add("Umair")
+		linkedlist.append("Umair")
 
 		# Act
 		found = linkedlist.find("Usman")
@@ -74,7 +74,7 @@ class LinkedListTests(unittest.TestCase):
 	def test_update_when_item_is_present(self):
 		# Arrange
 		linkedlist = LinkedList()
-		linkedlist.add("Umair")
+		linkedlist.append("Umair")
 
 		# Act
 		updated = linkedlist.update("Umair", "Usman")
@@ -86,7 +86,7 @@ class LinkedListTests(unittest.TestCase):
 	def test_update_when_item_is_not_present(self):
 		# Arrange
 		linkedlist = LinkedList()
-		linkedlist.add("Umair")
+		linkedlist.append("Umair")
 
 		# Act
 		updated = linkedlist.update("Usman", "Aamir")
@@ -98,7 +98,7 @@ class LinkedListTests(unittest.TestCase):
 	def test_remove_when_item_is_present_and_head_item_is_deleted_when_list_is_only_one_item(self):
 		# Arrange
 		linkedlist = LinkedList()
-		linkedlist.add("Umair")
+		linkedlist.append("Umair")
 
 		# Act
 		removed = linkedlist.remove("Umair")
@@ -111,9 +111,9 @@ class LinkedListTests(unittest.TestCase):
 	def test_remove_when_item_is_present_and_head_item_is_deleted_when_list_is_more_than_one_item(self):
 		# Arrange
 		linkedlist = LinkedList()
-		linkedlist.add("Umair")
-		linkedlist.add("Aamir")
-		linkedlist.add("Usman")
+		linkedlist.append("Umair")
+		linkedlist.append("Aamir")
+		linkedlist.append("Usman")
 
 		# Act
 		removed = linkedlist.remove("Umair")
@@ -126,9 +126,9 @@ class LinkedListTests(unittest.TestCase):
 	def test_remove_when_item_is_present_and_non_head_middle_item_is_deleted_when_list_is_more_than_one_item(self):
 		# Arrange
 		linkedlist = LinkedList()
-		linkedlist.add("Umair")
-		linkedlist.add("Aamir")
-		linkedlist.add("Usman")
+		linkedlist.append("Umair")
+		linkedlist.append("Aamir")
+		linkedlist.append("Usman")
 
 		# Act
 		removed = linkedlist.remove("Aamir")
@@ -141,9 +141,9 @@ class LinkedListTests(unittest.TestCase):
 	def test_remove_when_item_is_present_and_non_head_last_item_is_deleted_when_list_is_more_than_one_item(self):
 		# Arrange
 		linkedlist = LinkedList()
-		linkedlist.add("Umair")
-		linkedlist.add("Aamir")
-		linkedlist.add("Usman")
+		linkedlist.append("Umair")
+		linkedlist.append("Aamir")
+		linkedlist.append("Usman")
 
 		# Act
 		removed = linkedlist.remove("Usman")
@@ -156,9 +156,9 @@ class LinkedListTests(unittest.TestCase):
 	def test_remove_when_item_is_not_present_when_list_is_more_than_one_item(self):
 		# Arrange
 		linkedlist = LinkedList()
-		linkedlist.add("Umair")
-		linkedlist.add("Aamir")
-		linkedlist.add("Usman")
+		linkedlist.append("Umair")
+		linkedlist.append("Aamir")
+		linkedlist.append("Usman")
 
 		# Act
 		removed = linkedlist.remove("Maria")
@@ -181,7 +181,7 @@ class LinkedListTests(unittest.TestCase):
 	def test_reverse_when_list_is_only_one_item(self):
 		# Arrange
 		linkedlist = LinkedList()
-		linkedlist.add("Umair")
+		linkedlist.append("Umair")
 
 		# Act
 		linkedlist.reverse()
@@ -192,8 +192,8 @@ class LinkedListTests(unittest.TestCase):
 	def test_reverse_when_list_is_two_items(self):
 		# Arrange
 		linkedlist = LinkedList()
-		linkedlist.add("Umair")
-		linkedlist.add("Aamir")
+		linkedlist.append("Umair")
+		linkedlist.append("Aamir")
 
 		# Act
 		linkedlist.reverse()
@@ -204,13 +204,12 @@ class LinkedListTests(unittest.TestCase):
 	def test_reverse_when_list_is_more_than_two_items(self):
 		# Arrange
 		linkedlist = LinkedList()
-		linkedlist.add("Umair")
-		linkedlist.add("Aamir")
-		linkedlist.add("Usman")
+		linkedlist.append("Umair")
+		linkedlist.append("Aamir")
+		linkedlist.append("Usman")
 
 		# Act
 		linkedlist.reverse()
 
 		# Assert
 		self.assertTrue(linkedlist.head and linkedlist.head.data == "Usman")
-
