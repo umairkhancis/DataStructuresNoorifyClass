@@ -125,17 +125,109 @@ class MyArrayTests(unittest.TestCase):
 		self.assertEqual(200, myarray.get(1))
 		self.assertEqual(300, myarray.get(2))
 
-	# def test_insert_when_empty_myarray(self):
-	# 	# Arrange
-	# 	# myarray = MyArray('i')
+	def test_insert_when_empty_myarray(self):
+		# Arrange
+		myarray = MyArray()
+		
+		# Act & Assert
+		self.assertRaises(IndexError, myarray.insert, 0, 100)
 
-	# 	# # Act
-	# 	# myarray.insert(100, 0)
+	def test_insert_when_single_element_in_myarray(self):
+		# Arrange
+		myarray = MyArray('i', 20)
 
-	# 	# # Assert
-	# 	# self.assertEqual(1, myarray.size())
-	# 	# self.assertEqual(100, myarray.get(0))
+		# Act
+		myarray.insert(0, 100)
 
+		# Assert
+		self.assertEqual(2, myarray.size())
+		self.assertEqual(100, myarray.get(0))
+		self.assertEqual(20, myarray.get(1))
 
+	def test_insert_when_more_than_one_element_in_myarray(self):
+		# Arrange
+		myarray = MyArray('i', 20, 30)
 
+		# Act
+		myarray.insert(0, 100)
 
+		# Assert
+		self.assertEqual(3, myarray.size())
+		self.assertEqual(100, myarray.get(0))
+		self.assertEqual(20, myarray.get(1))
+		self.assertEqual(30, myarray.get(2))
+
+	def test_remove_when_empty_myarray(self):
+		# Arrange
+		myarray = MyArray()
+		
+		# Act & Assert
+		self.assertRaises(ValueError, myarray.remove, 100)
+
+	def test_remove_when_single_element_in_myarray(self):
+		# Arrange
+		myarray = MyArray('i', 20)
+
+		# Act
+		myarray.remove(20)
+
+		# Assert
+		self.assertEqual(0, myarray.size())
+
+	def test_remove_when_more_than_one_element_in_myarray(self):
+		# Arrange
+		myarray = MyArray('i', 20, 30)
+
+		# Act
+		myarray.remove(20)
+
+		# Assert
+		self.assertEqual(1, myarray.size())
+		self.assertEqual(30, myarray.get(0))
+
+	def test_pop_when_empty_myarray(self):
+		# Arrange
+		myarray = MyArray()
+		
+		# Act & Assert
+		self.assertRaises(IndexError, myarray.pop, -1)
+
+	def test_pop_when_single_element_in_myarray(self):
+		# Arrange
+		myarray = MyArray('i', 20)
+
+		# Act
+		myarray.pop()
+
+		# Assert
+		self.assertEqual(0, myarray.size())
+
+	def test_pop_when_more_than_one_element_in_myarray(self):
+		# Arrange
+		myarray = MyArray('i', 20, 30)
+
+		# Act
+		myarray.pop(0)
+
+		# Assert
+		self.assertEqual(1, myarray.size())
+		self.assertEqual(30, myarray.get(0))
+
+	def test_pop_when_more_than_two_element_in_myarray(self):
+		# Arrange
+		myarray = MyArray('i', 20, 30, 40)
+
+		# Act
+		myarray.pop(1)
+
+		# Assert
+		self.assertEqual(2, myarray.size())
+		self.assertEqual(20, myarray.get(0))
+		self.assertEqual(40, myarray.get(1))
+
+	def test_pop_when_index_out_bounds(self):
+		# Arrange
+		myarray = MyArray('i', 20, 30, 40)
+		
+		# Act & Assert
+		self.assertRaises(IndexError, myarray.pop, 4)

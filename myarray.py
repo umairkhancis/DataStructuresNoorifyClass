@@ -8,11 +8,9 @@ class MyArray(object):
 		self._capacity = len(initial_values)
 		self._size = len(args)
 
-	# same as arr[i]; syntactic sugar
 	def get(self, index):
 		return self._arr[index]
 
-	# same as arr[0] = 10; syntactic sugar
 	def set(self, index, value):
 		self._arr[index] = value
 
@@ -23,24 +21,22 @@ class MyArray(object):
 		self._size += 1
 		
 		if self._size > self._capacity:
-			self._arr = self.expand_capacity(self._arr)
+			self._arr = self._expand_capacity(self._arr)
 
 		self._arr[self._size-1] = value
 
 		return self
 
-
 	def remove(self, value):
 		index = -1
-		for i in range(self.__size):
+		for i in range(self._size):
 			if self._arr[i] == value:
 				index = i
 				break;
 
 		if index == -1:
-			print("throw exception")
+			raise ValueError("Value not found in array.")
 
-		# 1,2,null,4,5
 		k = index + 1
 		while k < self._size:
 			self._arr[k-1] = self._arr[k]
@@ -50,23 +46,38 @@ class MyArray(object):
 
 		return self
 
-
 	def insert(self, index, value):
-		print("insert")
-		# if index == 0 and 
+		if index not in range(self._size):
+			raise IndexError("Out of bound index.")
 
-		# elif index >= self._size:
-		# 	raise IndexError("Out of bound insertion.")
+		self._size += 1
 
+		if self._size > self._capacity:
+			self._arr = self._expand_capacity(self._arr)
+
+		i = self._size - 1
+		while i > index:
+			self._arr[i] = self._arr[i-1]
+			i -= 1
+		
+		self._arr[index] = value
 
 	def pop(self, index = -1):
-		print("pop")
+		if index == -1 and self._size == 0:
+			raise IndexError("Array is empty.")
 
-	def __str__(self):
-		return "arr={} size={} capacity={}".format(self._arr, self._size, self._capacity)
+		if index >= self._size:
+			raise IndexError("Index out of bounds.")
 
+		if index > -1:
+			k = index + 1
+			while k < self._size:
+				self._arr[k-1] = self._arr[k]
+				k += 1
 
-	def expand_capacity(self, current_arr):
+		self._size -= 1
+
+	def _expand_capacity(self, current_arr):
 		if len(current_arr) == 0:
 			new_arr = array(self._typecode, [-1])
 		else:
@@ -76,3 +87,6 @@ class MyArray(object):
 			new_arr[j] = current_arr[j]
 
 		return new_arr
+
+	def __str__(self):
+		return "arr={} size={} capacity={}".format(self._arr, self._size, self._capacity)
