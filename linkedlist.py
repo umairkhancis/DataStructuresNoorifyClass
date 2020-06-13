@@ -54,7 +54,6 @@ class LinkedList(object):
 		prev_head = self.head
 		self.head = prev_head.next
 
-
 	def push_back(self, data):
 		new_node = self._get_new_node(data)
 
