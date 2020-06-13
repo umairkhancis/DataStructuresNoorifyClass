@@ -7,7 +7,7 @@ class Node(object):
 		self.next = next
 
 	def __str__(self):
-		return "{data}".format(data=self.data)
+		return "{} -> {}".format(self.data, self.next)
 
 class LinkedList(object):
 	def __init__(self, head = None):
@@ -16,33 +16,43 @@ class LinkedList(object):
 
 	def size(self):
 		count = 0
-		node = self.head
-		while node:
+		current_node = self.head
+		while current_node:
 			count += 1
-			node = node.next
+			current_node = current_node.next
 
 		return count
 
 	def find(self, data):
-		node = self.head
-		while node:
-			if node.data == data:
-				return Node(node.data, node.next)
-			node = node.next
+		current_node = self.head
+		while current_node:
+			if current_node.data == data:
+				return Node(current_node.data, current_node.next)
+			current_node = current_node.next
 
 		return None
 
 	def update(self, data, new_data):
-		node = self.head
-		while node:
-			if node.data == data:
-				node.data = new_data
+		current_node = self.head
+		while current_node:
+			if current_node.data == data:
+				current_node.data = new_data
 				return True
-			node = node.next
+			current_node = current_node.next
 
 		return False
 
-	def add(self, data):
+	def append(self, data):
+		new_node = self.__get_new_node__(data)
+
+		if self.head:
+			last_node = self.__get_last_node__()
+			last_node.next = new_node
+		else:
+			self.head = new_node
+			return True
+
+	def insert(self, data):
 		new_node = self.__get_new_node__(data)
 
 		if self.head:
@@ -68,7 +78,7 @@ class LinkedList(object):
 
 		return False
 
-	def reverse(self):
+	def _reverse_iterative(self):
 		current = self.head
 		prev = None
 		while current:
@@ -77,21 +87,24 @@ class LinkedList(object):
 			prev = current
 			current = temp_node
 
-		# resetting head
 		if prev:
 			self.head = prev
 
 		return self.head
 
-	def reverse(self, node):
-		
-		if node == None:
-			node.next
-		
-		reverse(node.next)
-
-
-			
+	def reverse(self, method = "recurrsive"):
+		if method == "iterative":
+			return self._reverse_iterative()
+		else:
+			self._reverse_recurrsive(None, self.head)
+			return self.head
+	
+	def _reverse_recurrsive(self, prev, curr):
+		if not curr:
+			self.head = prev
+			return
+		self._reverse_recurrsive(curr, curr.next)
+		curr.next = prev
 
 	def __get_new_node__(self, data):
 		node = Node()
