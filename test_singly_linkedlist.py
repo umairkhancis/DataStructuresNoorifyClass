@@ -1,10 +1,10 @@
 import unittest
-from linkedlist import LinkedList
+from singly_linkedlist import SinglyLinkedList
 
-class LinkedListTests(unittest.TestCase):
+class SinglyLinkedListTests(unittest.TestCase):
 	def test_size_when_empty_linkedlist(self):
 		# Arrange
-		linkedlist = LinkedList()
+		linkedlist = SinglyLinkedList()
 		
 		# Act
 		size = linkedlist.size()
@@ -13,7 +13,7 @@ class LinkedListTests(unittest.TestCase):
 		self.assertEqual(0, size)
 
 	def test_size_when_single_item_linkedlist(self):
-		linkedlist = LinkedList()
+		linkedlist = SinglyLinkedList()
 		linkedlist.push_back("Umair")
 		
 		# Act
@@ -24,7 +24,7 @@ class LinkedListTests(unittest.TestCase):
 
 	def test_size_when_two_items_linkedlist(self):
 		# Arrange
-		linkedlist = LinkedList()
+		linkedlist = SinglyLinkedList()
 		linkedlist.push_back("Umair")
 		linkedlist.push_back("Aamir")
 		
@@ -36,7 +36,7 @@ class LinkedListTests(unittest.TestCase):
 
 	def test_size_when_more_than_two_items_linkedlist(self):
 		# Arrange
-		linkedlist = LinkedList()
+		linkedlist = SinglyLinkedList()
 		linkedlist.push_back("Aamir")
 		linkedlist.push_back("Maria")
 		linkedlist.push_back("Umair")
@@ -50,14 +50,14 @@ class LinkedListTests(unittest.TestCase):
 
 	def test_find_when_empty_linked_list(self):
 		# Arrange
-		linkedlist = LinkedList()
+		linkedlist = SinglyLinkedList()
 
 		# Act & Assert
 		self.assertRaises(ValueError, linkedlist.find, "Umair")
 
 	def test_find_when_when_non_empty_linked_list_and_item_is_present(self):
 		# Arrange
-		linkedlist = LinkedList()
+		linkedlist = SinglyLinkedList()
 		linkedlist.push_back("Umair")
 
 		# Act
@@ -69,7 +69,7 @@ class LinkedListTests(unittest.TestCase):
 
 	def test_find_when_when_non_empty_linked_list_and_item_is_not_present(self):
 		# Arrange
-		linkedlist = LinkedList()
+		linkedlist = SinglyLinkedList()
 		linkedlist.push_back("Umair")
 
 		# Act & Assert
@@ -77,14 +77,14 @@ class LinkedListTests(unittest.TestCase):
 
 	def test_update_when_empty_linked_list(self):
 		# Arrange
-		linkedlist = LinkedList()
+		linkedlist = SinglyLinkedList()
 
 		# Act & Assert
 		self.assertRaises(ValueError, linkedlist.update, "Umair", "Usman")
 
 	def test_update_when_when_non_empty_linked_list_and_item_is_present(self):
 		# Arrange
-		linkedlist = LinkedList()
+		linkedlist = SinglyLinkedList()
 		linkedlist.push_back("Umair")
 
 		# Act
@@ -96,7 +96,7 @@ class LinkedListTests(unittest.TestCase):
 
 	def test_update_when_when_non_empty_linked_list_and_item_is_not_present(self):
 		# Arrange
-		linkedlist = LinkedList()
+		linkedlist = SinglyLinkedList()
 		linkedlist.push_back("Umair")
 
 		# Act & Assert
@@ -104,7 +104,7 @@ class LinkedListTests(unittest.TestCase):
 
 	def test_push_front_when_empty_linked_list(self):
 		# Arrange
-		linkedlist = LinkedList()
+		linkedlist = SinglyLinkedList()
 
 		# Act
 		pushed = linkedlist.push_front("Umair")
@@ -116,7 +116,7 @@ class LinkedListTests(unittest.TestCase):
 
 	def test_push_front_when_single_item_linked_list(self):
 		# Arrange
-		linkedlist = LinkedList()
+		linkedlist = SinglyLinkedList()
 		linkedlist.push_front("Umair")
 
 		# Act
@@ -129,7 +129,7 @@ class LinkedListTests(unittest.TestCase):
 
 	def test_push_front_when_more_than_one_items_linked_list(self):
 		# Arrange
-		linkedlist = LinkedList()
+		linkedlist = SinglyLinkedList()
 		linkedlist.push_front("Umair")
 		linkedlist.push_front("Aamir")
 
@@ -143,7 +143,7 @@ class LinkedListTests(unittest.TestCase):
 
 	def test_push_front_when_more_than_two_items_linked_list(self):
 		# Arrange
-		linkedlist = LinkedList()
+		linkedlist = SinglyLinkedList()
 		linkedlist.push_front("Umair")
 		linkedlist.push_front("Aamir")
 		linkedlist.push_front("Usman")
@@ -158,14 +158,14 @@ class LinkedListTests(unittest.TestCase):
 
 	def test_pop_front_when_empty_linkedlist(self):
 		# Arrange
-		linkedlist = LinkedList()
+		linkedlist = SinglyLinkedList()
 
 		# Act & Assert
 		self.assertRaises(ValueError, linkedlist.pop_front)
 
 	def test_pop_front_when_single_item_linkedlist(self):
 		# Arrange
-		linkedlist = LinkedList()
+		linkedlist = SinglyLinkedList()
 		linkedlist.push_back("Umair")
 
 		# Act 
@@ -177,7 +177,7 @@ class LinkedListTests(unittest.TestCase):
 
 	def test_pop_front_when_more_than_one_items_linkedlist(self):
 		# Arrange
-		linkedlist = LinkedList()
+		linkedlist = SinglyLinkedList()
 		linkedlist.push_back("Umair")
 		linkedlist.push_back("Aamir")
 
@@ -191,7 +191,7 @@ class LinkedListTests(unittest.TestCase):
 
 	def test_pop_front_when_more_than_two_items_linkedlist(self):
 		# Arrange
-		linkedlist = LinkedList()
+		linkedlist = SinglyLinkedList()
 		linkedlist.push_back("Umair")
 		linkedlist.push_back("Aamir")
 		linkedlist.push_back("Usman")
@@ -204,9 +204,55 @@ class LinkedListTests(unittest.TestCase):
 		self.assertRaises(ValueError, linkedlist.find, "Umair")
 		self.assertEqual(linkedlist.head.data, "Aamir")
 
+	def test_top_front_when_empty_linkedlist(self):
+		# Arrange
+		linkedlist = SinglyLinkedList()
+
+		# Act & Assert
+		self.assertRaises(ValueError, linkedlist.top_front)
+
+	def test_top_front_when_single_item_linkedlist(self):
+		# Arrange
+		linkedlist = SinglyLinkedList()
+		linkedlist.push_back("Umair")
+
+		# Act 
+		front = linkedlist.top_front()
+
+		# Assert
+		self.assertTrue(linkedlist.size() == 1)
+		self.assertEqual(front, "Umair")
+
+	def test_top_front_when_more_than_one_items_linkedlist(self):
+		# Arrange
+		linkedlist = SinglyLinkedList()
+		linkedlist.push_back("Umair")
+		linkedlist.push_back("Aamir")
+
+		# Act 
+		front = linkedlist.top_front()
+
+		# Assert
+		self.assertTrue(linkedlist.size() == 2)
+		self.assertEqual(front, "Umair")
+
+	def test_top_front_when_more_than_two_items_linkedlist(self):
+		# Arrange
+		linkedlist = SinglyLinkedList()
+		linkedlist.push_back("Umair")
+		linkedlist.push_back("Aamir")
+		linkedlist.push_back("Usman")
+
+		# Act 
+		front = linkedlist.top_front()
+
+		# Assert
+		self.assertTrue(linkedlist.size() == 3)
+		self.assertEqual(front, "Umair")
+
 	def test_push_back_when_empty_linked_list(self):
 		# Arrange
-		linkedlist = LinkedList()
+		linkedlist = SinglyLinkedList()
 
 		# Act
 		pushed = linkedlist.push_back("Umair")
@@ -218,7 +264,7 @@ class LinkedListTests(unittest.TestCase):
 
 	def test_push_back_when_single_item_linked_list(self):
 		# Arrange
-		linkedlist = LinkedList()
+		linkedlist = SinglyLinkedList()
 		linkedlist.push_back("Umair")
 
 		# Act
@@ -231,7 +277,7 @@ class LinkedListTests(unittest.TestCase):
 
 	def test_push_back_when_more_than_two_items_linked_list(self):
 		# Arrange
-		linkedlist = LinkedList()
+		linkedlist = SinglyLinkedList()
 		linkedlist.push_back("Umair")
 		linkedlist.push_back("Usman")
 		linkedlist.push_back("Rayan")
@@ -246,7 +292,7 @@ class LinkedListTests(unittest.TestCase):
 
 	def test_pop_back_when_empty_linkedlist(self):
 		# Arrange
-		linkedlist = LinkedList()
+		linkedlist = SinglyLinkedList()
 
 		# Act & Assert
 		self.assertRaises(ValueError, linkedlist.pop_back)
@@ -254,7 +300,7 @@ class LinkedListTests(unittest.TestCase):
 
 	def test_pop_back_when_single_item_linkedlist(self):
 		# Arrange
-		linkedlist = LinkedList()
+		linkedlist = SinglyLinkedList()
 		linkedlist.push_back("Umair")
 
 		# Act 
@@ -266,7 +312,7 @@ class LinkedListTests(unittest.TestCase):
 
 	def test_pop_back_when_more_than_one_items_linkedlist(self):
 		# Arrange
-		linkedlist = LinkedList()
+		linkedlist = SinglyLinkedList()
 		linkedlist.push_back("Umair")
 		linkedlist.push_back("Aamir")
 
@@ -279,7 +325,7 @@ class LinkedListTests(unittest.TestCase):
 
 	def test_pop_back_when_more_than_two_items_linkedlist(self):
 		# Arrange
-		linkedlist = LinkedList()
+		linkedlist = SinglyLinkedList()
 		linkedlist.push_back("Umair")
 		linkedlist.push_back("Aamir")
 		linkedlist.push_back("Usman")
@@ -291,9 +337,55 @@ class LinkedListTests(unittest.TestCase):
 		self.assertTrue(linkedlist.size() == 2)
 		self.assertRaises(ValueError, linkedlist.find, "Usman")
 
+	def test_top_back_when_empty_linkedlist(self):
+		# Arrange
+		linkedlist = SinglyLinkedList()
+
+		# Act & Assert
+		self.assertRaises(ValueError, linkedlist.top_back)
+
+	def test_top_back_when_single_item_linkedlist(self):
+		# Arrange
+		linkedlist = SinglyLinkedList()
+		linkedlist.push_back("Umair")
+
+		# Act 
+		topped = linkedlist.top_back()
+
+		# Assert
+		self.assertTrue(linkedlist.size() == 1)
+		self.assertEqual(topped, "Umair")
+
+	def test_top_back_when_more_than_one_items_linkedlist(self):
+		# Arrange
+		linkedlist = SinglyLinkedList()
+		linkedlist.push_back("Umair")
+		linkedlist.push_back("Aamir")
+
+		# Act 
+		topped = linkedlist.top_back()
+
+		# Assert
+		self.assertTrue(linkedlist.size() == 2)
+		self.assertEqual(topped, "Aamir")
+
+	def test_top_back_when_more_than_two_items_linkedlist(self):
+		# Arrange
+		linkedlist = SinglyLinkedList()
+		linkedlist.push_back("Umair")
+		linkedlist.push_back("Aamir")
+		linkedlist.push_back("Usman")
+
+		# Act 
+		topped = linkedlist.top_back()
+
+		# Assert
+		self.assertTrue(linkedlist.size() == 3)
+		self.assertEqual(topped, "Usman")
+
 	def test_remove_when_empty_linkedlist(self):
 		# Arrange
-		linkedlist = LinkedList()
+		linkedlist = SinglyLinkedList()
 
 		# Act & Assert
 		self.assertRaises(ValueError, linkedlist.remove, "Umair")
@@ -301,7 +393,7 @@ class LinkedListTests(unittest.TestCase):
 
 	def test_remove_when_item_is_present_and_head_item_is_removed_when_linkedlist_is_only_one_item(self):
 		# Arrange
-		linkedlist = LinkedList()
+		linkedlist = SinglyLinkedList()
 		linkedlist.push_back("Umair")
 
 		# Act
@@ -314,7 +406,7 @@ class LinkedListTests(unittest.TestCase):
 
 	def test_remove_when_item_is_present_and_head_item_is_removed_when_linkedlist_is_more_than_one_item(self):
 		# Arrange
-		linkedlist = LinkedList()
+		linkedlist = SinglyLinkedList()
 		linkedlist.push_back("Umair")
 		linkedlist.push_back("Aamir")
 		linkedlist.push_back("Usman")
@@ -329,7 +421,7 @@ class LinkedListTests(unittest.TestCase):
 
 	def test_remove_when_item_is_present_and_non_head_middle_item_is_removed_when_list_is_more_than_one_item(self):
 		# Arrange
-		linkedlist = LinkedList()
+		linkedlist = SinglyLinkedList()
 		linkedlist.push_back("Umair")
 		linkedlist.push_back("Aamir")
 		linkedlist.push_back("Usman")
@@ -344,7 +436,7 @@ class LinkedListTests(unittest.TestCase):
 
 	def test_remove_when_item_is_present_and_non_head_last_item_is_removed_when_linkedlist_is_more_than_one_item(self):
 		# Arrange
-		linkedlist = LinkedList()
+		linkedlist = SinglyLinkedList()
 		linkedlist.push_back("Umair")
 		linkedlist.push_back("Aamir")
 		linkedlist.push_back("Usman")
@@ -359,7 +451,7 @@ class LinkedListTests(unittest.TestCase):
 
 	def test_remove_when_item_is_not_present_when_linkedlist_is_more_than_one_item(self):
 		# Arrange
-		linkedlist = LinkedList()
+		linkedlist = SinglyLinkedList()
 		linkedlist.push_back("Umair")
 		linkedlist.push_back("Aamir")
 		linkedlist.push_back("Usman")
@@ -370,7 +462,7 @@ class LinkedListTests(unittest.TestCase):
 
 	def test_reverse_when_linkedlist_is_empty(self):
 		# Arrange
-		linkedlist = LinkedList()
+		linkedlist = SinglyLinkedList()
 
 		# Act
 		linkedlist.reverse()
@@ -380,7 +472,7 @@ class LinkedListTests(unittest.TestCase):
 
 	def test_reverse_when_single_item_linkedlist(self):
 		# Arrange
-		linkedlist = LinkedList()
+		linkedlist = SinglyLinkedList()
 		linkedlist.push_back("Umair")
 
 		# Act
@@ -391,7 +483,7 @@ class LinkedListTests(unittest.TestCase):
 
 	def test_reverse_when_two_items_linkedlist(self):
 		# Arrange
-		linkedlist = LinkedList()
+		linkedlist = SinglyLinkedList()
 		linkedlist.push_back("Umair")
 		linkedlist.push_back("Aamir")
 
@@ -403,7 +495,7 @@ class LinkedListTests(unittest.TestCase):
 
 	def test_reverse_when_more_than_two_items_linkedlist(self):
 		# Arrange
-		linkedlist = LinkedList()
+		linkedlist = SinglyLinkedList()
 		linkedlist.push_back("Umair")
 		linkedlist.push_back("Aamir")
 		linkedlist.push_back("Usman")

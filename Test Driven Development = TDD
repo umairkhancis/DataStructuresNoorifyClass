@@ -1,0 +1,4 @@
+Test Driven Development = TDD
+1. Write a failing test case
+2. Write code to pass the failing test case.
+3. Remove duplication and hard coded values

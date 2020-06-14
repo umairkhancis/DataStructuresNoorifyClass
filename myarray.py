@@ -87,3 +87,14 @@ class MyArray(object):
 
 	def __str__(self):
 		return "arr={} size={} capacity={}".format(self._arr, self._size, self._capacity)
+
+
+# myarray = MyArray('i', 10, 20 ,30)
+# myarray.append(40)
+# print(myarray)
+
+# myarray = MyArray('i', 10, 20 ,30)
+# myarray.insert(1, 50)
+# print(myarray)
+
+# # 10, 50, 20, 30
