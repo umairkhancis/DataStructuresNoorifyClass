@@ -7,9 +7,9 @@ class Node(object):
 	def __str__(self):
 		return "{} -> {}".format(self.data, self.next)
 
-class SinglyLinkedList(object):
+class LinkedList(object):
 	def __init__(self):
-		super(SinglyLinkedList, self).__init__()
+		super(LinkedList, self).__init__()
 		self.head = None
 
 	def size(self):
