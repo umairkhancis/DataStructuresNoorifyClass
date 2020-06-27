@@ -12,12 +12,25 @@ class LinkedList(object):
 		super(LinkedList, self).__init__()
 		self.head = None
 
-	def size(self):
-		print("Complete the implementation")
+	def _get_new_node(self, data):
+		node = Node()
+		node.data = data
+		node.next = None
 
+		return node
+
+	def size(self):
+		count = 0
+		current_node = self.head
+		while current_node:
+			count += 1
+			current_node = current_node.next
+		return count
 
 	def find(self, data):
+
 		print("Complete the implementation")
+
 
 	def update(self, data, new_data):
 		print("Complete the implementation")
@@ -32,7 +45,13 @@ class LinkedList(object):
 		print("Complete the implementation")
 
 	def push_back(self, data):
-		print("Complete the implementation")
+		new_node = self._get_new_node(data)
+		if self.head:
+			last_node = self._get_last_node()
+			last_node.next = new_node
+		else:
+			self.head = new_node
+		return True
 
 	def pop_back(self):
 		print("Complete the implementation")
