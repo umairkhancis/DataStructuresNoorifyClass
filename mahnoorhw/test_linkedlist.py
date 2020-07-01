@@ -1,5 +1,5 @@
 import unittest
-from singly_linkedlist import LinkedList
+from doubly_linkedlist import LinkedList
 
 class LinkedListTests(unittest.TestCase):
 	def test_size_when_empty_linkedlist(self):
