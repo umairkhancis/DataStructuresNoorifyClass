@@ -25,7 +25,7 @@ class LinkedList(object):
         return count
 
     def _get_new_node(self, data):
-        node = Node()
+        node = Node(data)
         node.data = data
         node.next = None
         node.prev = None
@@ -34,9 +34,10 @@ class LinkedList(object):
 
     def find(self, data):
         curr_node = self.head
+
         while curr_node:
             if curr_node.data == data:
-                return Node(curr_node.data,curr_node.next,curr_node.pev)
+                return Node(curr_node.data,curr_node.next)
             curr_node = curr_node.next
         raise ValueError("value not found")
 
@@ -52,25 +53,27 @@ class LinkedList(object):
     def push_front(self, data):
         new_node = self._get_new_node(data)
         if self.head is None:
-            self.head = new_node
-            self.tail = new_node
-            new_node.prev = None
-            new_node.next = None
+            self.head = self.tail = new_node
+            self.head.previous = None
+            self.tail.next = None
         else:
             new_node.next = self.head
             new_node.prev = None
             self.head.prev = new_node
             self.head = new_node
+        return True
 
     def pop_front(self):
 
         if not self.head:
             raise ValueError("Empty list ")
-        else:
-            curr = self.head
-            self.head = curr.next
+        elif self.head is not self.tail:
+            self.head = self.head.next
             self.head.prev = None
-            curr = None
+            return
+        else:
+            self.head = self.tail = None
+            return
 
 
 
@@ -79,31 +82,33 @@ class LinkedList(object):
             raise ValueError("Empty list ")
         return self.head
 
-
     def push_back(self, data):
+        new_node = self._get_new_node(data)
 
         if self.tail is None:
-            self.head = new_node
-            self.tail = new_node
-            new_node.prev = None
-            new_node.next = None
+            self.head = self.tail = new_node
+            self.head.prev = None
+            self.tail.next = None
 
         else:
+            self.tail.next = new_node
             new_node.prev = self.tail
-            new_node.next = None
             self.tail = new_node
+            self.tail.next = None
+
         return True
+
 
 
     def pop_back(self):
-        if self.tail is None:
+        if self.head is None:
             raise  ValueError("Empty list ")
-        else:
-            curr = self.tail
-            self.tail = curr.prev
+        elif self.head is not self.tail:
+            self.tail = self.tail.prev
             self.tail.next = None
-            curr = None
-        return True
+        else:
+            self.head = self.tail = None
+        return
 
 
 
@@ -119,12 +124,13 @@ class LinkedList(object):
             if curr.data == data and curr == self.head:
                 if not curr.next:
                     curr = None
-                    self.head = None
+                    self.head = self.tail = None
                 else:
                     next= curr.next
                     curr.next = None
                     curr.prev = None
                     self.head = next
+                    self.head.prev = None
                     curr = None     
                 return True  # data removed
             elif curr.data == data:
@@ -136,26 +142,28 @@ class LinkedList(object):
                     curr.next = None
                     curr.prev = None
                     curr = None
+                else:
+                    self.tail = self.tail.prev
+                    self.tail.next = None
+
                 return True
             else:
                 curr = curr.next
-        return False  # data not found
+        raise ValueError("Empty list ") # data not found
 
 
     def _reverse_iterative(self):
-        if self.head is None:
-            raise  ValueError("Empty list ")
-        else:
-            curr_node = self.head
-            prev_node = None
-            while curr_node:
-                next = curr_node.next
-                curr_node.next = prev_node
-                curr_node.prev = next
-                prev_node = curr_node
-                curr_node = curr_node.prev
-        self.head = prev_node
-        return True
+        curr = self.head
+        prev = None
+        while curr:
+            next = curr.next
+            curr.next = prev
+            prev = curr
+            curr = next
+        if prev:
+            self.head = prev
+        return self.head
+
 
     def reverse(self, method="recurrsive"):
         if method == "iterative":
@@ -166,26 +174,11 @@ class LinkedList(object):
 
     def _reverse_recurrsive(self, prev, curr):
 
-        if curr.next is None:
-            # swap next and prev pointers for the current node
-            prev = curr.prev
-            curr.prev = curr.next
-            curr.next = prev
-
-            # update head
-            self.head = curr
-            return self.head
-
-            # swap next and prev pointers for the current node
-        prev = curr.prev
-        curr.prev = curr.next
+        if not curr:
+            self.head = prev
+            return
+        self._reverse_recurrsive(curr, curr.next)
         curr.next = prev
-
-        # recur with the next node
-        self.head = _reverse_recurrsive(self.head, curr.prev)
-        return self.head
-
-        #print("Complete the implementation")
 
     def __str__(self):
         result = "\n*** LinkedList ***\n"
