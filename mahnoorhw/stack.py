@@ -11,7 +11,6 @@ class Node(object):
 
 class Stack(object):
     def __init__(self):
-        super(LinkedList, self).__init__()
         self.head = None
         self.tail = None
 
@@ -42,22 +41,23 @@ class Stack(object):
         if not self.head:
             raise ValueError("Empty list ")
         elif self.head is not self.tail:
-            self.head = self.head.next
-            self.head.prev = None
-            return
+            prev_head = self.head
+            self.head = prev_head.next
+            return prev_head.data
         else:
+            prev_head = self.head
             self.head = self.tail = None
-            return
+            return prev_head.data
 
     def top(self):
         if not self.head:
             raise ValueError("Empty list ")
-        return self.head
+        return self.head.data
 
     def isEmpty(self):
         if self.head:
-            return True
-        return False
+            return False
+        return True
 
 
     def size(self):
