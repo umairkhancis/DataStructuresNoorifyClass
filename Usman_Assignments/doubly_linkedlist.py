@@ -1,7 +1,6 @@
 class Node(object):
-    
-	def __init__(self, data = None, next = None, prev = None):
-		super(Node, self).__init__()
+    	def __init__(self, data = None, next = None, prev = None):
+    		super(Node, self).__init__()
 		self.data = data
 		self.next = next
 		self.prev = prev
@@ -14,6 +13,7 @@ class LinkedList(object):
 	def __init__(self):
 		super(LinkedList, self).__init__()
 		self.head = None
+		self.tail = None
 
 	def size(self):
 		node = self.head
@@ -40,17 +40,14 @@ class LinkedList(object):
 	def update(self, data, new_data):
 		node = self.head
 		updated = False
-
 		while node and updated is False:
 			if node.data == data:
 				node.data = new_data
 				updated = True
 			else:
 				node = node.next
-
 		if node is None:
-    			raise ValueError("Could not found...")
-
+			raise ValueError("Could not found...")
 		return updated
 
 	def push_front(self, data):
@@ -58,7 +55,7 @@ class LinkedList(object):
 		if self.head is None:
 			self.head = new_node
 			return True
-		else:	
+		else:
 			new_node.next = self.head
 			self.head.prev = new_node
 			self.head = new_node
@@ -66,16 +63,16 @@ class LinkedList(object):
 
 	def push_back(self, data):
 		new_node = Node(data)
-		if self.head is None:
-			self.head = new_node
-			return True
-		
-		node = self.head
-		while node.next is not None: # if linkedlist is empty
-			node = node.next
-
-		node.next = new_node
-		new_node.prev = node
+		if self.tail is None:
+			self.tail = new_node
+			self.tail.next = None
+			self.head = self.tail
+			self.head.prev = None
+		else:
+			self.tail.next = new_node
+			new_node.prev = self.tail
+			self.tail = new_node
+			new_node.next = None
 		return True
 
 	def pop_front(self):
@@ -86,20 +83,15 @@ class LinkedList(object):
 		self.head = self.head.next
 
 	def pop_back(self):
-		if self.head is None:
+		if self.tail is None:
 			raise ValueError("Nothing to pop...")
 			return
-		
-		node = self.head
-		if node.next == None: # if first node is to be popped
+		elif self.head == self.tail:
 			self.head = None
-			return True
-
-		while node.next is not None:
-			node = node.next
-            
-		node.prev.next = None
-		node.prev = None
+			self.tail = self.head
+		else:
+			self.tail = self.tail.prev
+			self.tail.next = None
 		return True
 
 	def top_front(self):
@@ -112,11 +104,7 @@ class LinkedList(object):
 		if self.head is None:
 			raise ValueError("Empty LinkedList...")
 			return
-
-		node = self.head	
-		while node.next is not None:
-			node = node.next
-		return node.data
+		return self.tail.data
 
 	def remove(self, data):
 		if self.head is None:
@@ -125,6 +113,12 @@ class LinkedList(object):
 
 		if self.head.data == data: # if first node is to be removed
 			self.head = self.head.next
+			self.head.prev = None
+			return True
+
+		if self.tail.data == data: # if last node is to be removed
+			self.tail = self.tail.prev
+			self.tail.next = None
 			return True
 
 		node = self.head
@@ -137,7 +131,7 @@ class LinkedList(object):
 			node = node.next
 
 		if node is None:
-			raise ValueError("Node not found...")			
+			raise ValueError("Node not found...")
 
 	def reverse(self, method = "iterative"):
 		if method == "iterative":
@@ -158,7 +152,7 @@ class LinkedList(object):
 
 		if temp is not None:
 			self.head = temp.prev
-	
+
 	def __str__(self):
 		result = "\n*** LinkedList ***\n"
 		node = self.head
