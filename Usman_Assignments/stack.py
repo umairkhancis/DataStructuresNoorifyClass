@@ -1,5 +1,5 @@
 class Node(object):
-    	def __init__(self, data = None, next = None, prev = None):
+	def __init__(self, data = None, next = None, prev = None):
 		super(Node, self).__init__()
 		self.data = data
 		self.next = next

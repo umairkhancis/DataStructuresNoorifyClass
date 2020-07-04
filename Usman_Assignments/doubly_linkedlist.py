@@ -1,6 +1,6 @@
 class Node(object):
-    	def __init__(self, data = None, next = None, prev = None):
-    		super(Node, self).__init__()
+	def __init__(self, data = None, next = None, prev = None):
+		super(Node, self).__init__()
 		self.data = data
 		self.next = next
 		self.prev = prev
@@ -112,8 +112,8 @@ class LinkedList(object):
 			return True
 
 		if self.head.data == data: # if first node is to be removed
-			self.head = self.head.next
 			self.head.prev = None
+			self.head = self.head.next
 			return True
 
 		if self.tail.data == data: # if last node is to be removed
