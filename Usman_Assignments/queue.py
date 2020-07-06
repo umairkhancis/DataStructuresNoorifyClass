@@ -1,3 +1,5 @@
+from doubly_linkedlist import LinkedList
+
 class Node(object):
     def __init__(self, data = None, next = None, prev = None):
         super(Node, self).__init__()
@@ -7,49 +9,22 @@ class Node(object):
 
 class Queue(object):
     def __init__(self):
-        self.head = None
-        self.tail = None
+        self.queueLL = LinkedList()
 
     def push(self, data):
-        new_node = Node(data)
-        if self.tail is None:
-            self.tail = new_node
-            self.tail.next = None
-            self.head = self.tail
-            self.head.prev = None
-        else:
-            self.tail.next = new_node
-            new_node.prev = self.tail
-            self.tail = new_node
-            new_node.next = None
-        return True
+        return self.queueLL.push_back(data)
 
     def pop(self):
-        if self.head is None:
-            raise ValueError("Empty Queue...")
-            return
-        popped_data = self.head.data
-        self.head.prev = None
-        self.head = self.head.next
-        return popped_data
+        return self.queueLL.pop_front()
 
     def top(self):
-        if self.head is None:
-            raise ValueError("Empty Queue...")
-            return
-        return self.head.data
+        return self.queueLL.top_front()
 
     def isEmpty(self):
-        if self.head is None:
+        if self.queueLL.head is None:
             return True
         else:
             return False
 
     def size(self):
-        node = self.head
-        count = 0
-        while node:
-            count += 1
-            node = node.next
-        
-        return count
+        return self.queueLL.size()

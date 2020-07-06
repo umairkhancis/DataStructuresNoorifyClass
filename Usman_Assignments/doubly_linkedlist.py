@@ -79,20 +79,25 @@ class LinkedList(object):
 		if self.head is None:
 			raise ValueError("Nothing to pop...")
 			return
+		popped_data = self.head.data
 		self.head.prev = None
 		self.head = self.head.next
+		return popped_data
 
 	def pop_back(self):
+		popped_data = None
 		if self.tail is None:
 			raise ValueError("Nothing to pop...")
 			return
 		elif self.head == self.tail:
+			popped_data = self.head.data
 			self.head = None
 			self.tail = self.head
 		else:
+			popped_data = self.tail.data
 			self.tail = self.tail.prev
 			self.tail.next = None
-		return True
+		return popped_data
 
 	def top_front(self):
 		if self.head is None:
