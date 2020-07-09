@@ -68,19 +68,20 @@ class LinkedList(object):
         if not self.head:
             raise ValueError("Empty list ")
         elif self.head is not self.tail:
-            self.head = self.head.next
-            self.head.prev = None
-            return
+            prev_head = self.head
+            self.head = prev_head.next
+            return prev_head.data
         else:
+            prev_head = self.head
             self.head = self.tail = None
-            return
+            return prev_head.data
 
 
 
     def top_front(self):
         if not self.head:
             raise ValueError("Empty list ")
-        return self.head
+        return self.head.data
 
     def push_back(self, data):
         new_node = self._get_new_node(data)
@@ -102,20 +103,22 @@ class LinkedList(object):
 
     def pop_back(self):
         if self.head is None:
-            raise  ValueError("Empty list ")
+            raise ValueError("Empty list ")
         elif self.head is not self.tail:
-            self.tail = self.tail.prev
-            self.tail.next = None
-        else:
-            self.head = self.tail = None
-        return
+            prev_tail = self.tail
+            self.tail = prev_tail.prev
+            return prev_tail.data
 
+        else:
+            prev_tail = self.tail
+            self.head = self.tail = None
+            return prev_tail.data
 
 
     def top_back(self):
         if not self.tail:
             raise ValueError("Empty list ")
-        return self.tail
+        return self.tail.data
 
     def remove(self, data):
         curr = self.head

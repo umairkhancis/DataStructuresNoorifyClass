@@ -1,69 +1,28 @@
-class Node(object):
-    def __init__(self, data, next=None, prev=None):
-        super(Node, self).__init__()
-        self.data = data
-        self.next = next
-        self.prev = prev
-
-    def __str__(self):
-        return "{} -> {}".format(self.data, self.next,self.prev)
-
-
-class Stack(object):
+from doubly_linkedlist import LinkedList
+class Stack(LinkedList):
     def __init__(self):
+        super(Stack, self).__init__()
         self.head = None
-        self.tail = None
-
-
-    def _get_new_node(self, data):
-        node = Node(data)
-        node.data = data
-        node.next = None
-        node.prev = None
-        return node
 
 
     def push(self, data):
-        new_node = self._get_new_node(data)
-        if self.head is None:
-            self.head = self.tail = new_node
-            self.head.previous = None
-            self.tail.next = None
-        else:
-            new_node.next = self.head
-            new_node.prev = None
-            self.head.prev = new_node
-            self.head = new_node
-        return True
-
+        push1=LinkedList.push_front(self,data)
+        return push1
 
     def pop(self):
-        if not self.head:
-            raise ValueError("Empty list ")
-        elif self.head is not self.tail:
-            prev_head = self.head
-            self.head = prev_head.next
-            return prev_head.data
-        else:
-            prev_head = self.head
-            self.head = self.tail = None
-            return prev_head.data
+        pop1=LinkedList.pop_front(self)
+        return pop1
+
 
     def top(self):
-        if not self.head:
-            raise ValueError("Empty list ")
-        return self.head.data
+        top1=LinkedList.top_front(self)
+        return top1
 
     def isEmpty(self):
         if self.head:
             return False
         return True
 
-
     def size(self):
-        count = 0
-        curr_node = self.head
-        while curr_node:
-            count += 1
-            curr_node = curr_node.next
-        return count
+        size1=LinkedList.size(self)
+        return size1

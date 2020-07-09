@@ -162,14 +162,14 @@ class LinkedList(object):
 		else:
 			self._reverse_recurrsive(None, self.head)
 			return self.head
-	
+
+
 	def _reverse_recurrsive(self, prev, curr):
 		if not curr:
-			self.head = prev
-			return
-		self._reverse_recurrsive(curr,curr.next)
+				self.head = prev
+				return self.head
+		self._reverse_recurrsive(curr, curr.next)
 		curr.next = prev
-
 
 	def __str__(self):
 		result = "\n*** LinkedList ***\n"
