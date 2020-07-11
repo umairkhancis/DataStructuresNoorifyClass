@@ -53,11 +53,10 @@ class LinkedList(object):
 		if self.head is None:
 			self.head = new_node
 			return True
-		else:	
-			new_node.next = self.head
-			self.head.prev = new_node
-			self.head = new_node
-			return True
+		new_node.next = self.head	
+		self.head.prev = new_node
+		self.head = new_node
+		return True	
 
 	def push_back(self, data): #insert at the end of linked list
 		new_node = Node(data)
@@ -92,8 +91,10 @@ class LinkedList(object):
 		if self.head is None:
 			raise ValueError("nothing to pop")
 			return
+		poped_data = self.head.data
 		self.head.prev = None	
 		self.head = self.head.next
+		return poped_data
 
 	def top_back(self):
 		if self.head is None:
