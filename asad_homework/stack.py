@@ -1,22 +1,15 @@
-from doubly_linkedlist import LinkedList
+from doubly_linkedlist import *
 		
-class Node(object):
-
-	def __init__(self, data = None, next = None, prev = None):
-		super(Node, self).__init__()
-		self.data = data
-		self.next = next
-		self.prev = prev
-
 class Stack(object):
 	def __init__(self):
 		self.linkedlist = LinkedList()
-
+		
 	def push(self, data):
 		return self.linkedlist.push_front(data)
 
 	def pop(self):
 		return self.linkedlist.pop_front()
+	
 	def top(self):
 		return self.linkedlist.top_front()	
 

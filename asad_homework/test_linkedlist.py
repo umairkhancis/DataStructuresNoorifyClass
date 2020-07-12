@@ -1,6 +1,6 @@
 import unittest
-# from singly_linkedlist import LinkedList
-from doubly_linkedlist import LinkedList
+from singly_linkedlist import LinkedList
+# from doubly_linkedlist import LinkedList
 class LinkedListTests(unittest.TestCase):
 	def test_size_when_empty_linkedlist(self):
 		# Arrange
@@ -433,8 +433,9 @@ class LinkedListTests(unittest.TestCase):
 
 		# Assert
 		self.assertTrue(removed)
-		self.assertRaises(ValueError, linkedlist.find, "Usman")
 		self.assertTrue(linkedlist.size() == 2)
+		self.assertRaises(ValueError, linkedlist.find, "Usman")
+	
 
 	def test_remove_when_item_is_not_present_when_linkedlist_is_more_than_one_item(self):
 		# Arrange

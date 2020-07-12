@@ -12,6 +12,7 @@ class LinkedList(object):
 	def __init__(self):
 		super(LinkedList, self).__init__()
 		self.head = None
+		self._size = 0
 
 	def update(self, udata, new_data):
 		node = self.head
@@ -27,12 +28,7 @@ class LinkedList(object):
 		return updated	
 
 	def size(self):
-		node = self.head
-		count = 0
-		while node:
-			count+=1
-			node = node.next
-		return count
+		return self._size
 
 	def find(self,fdata):
 		node = self.head
@@ -48,12 +44,14 @@ class LinkedList(object):
 
 	def push_front(self, data): #insert at the start of linked list
 		new_node = Node(data)
+		self._size += 1
 		new_node.next = self.head
 		self.head = new_node
 		return True
 
 	def push_back(self, data): #insert at the end of linked list
 		new_node = Node(data)
+		self._size += 1
 		if self.head is None: # if linked list is empty
 			self.head = new_node
 			return True
@@ -67,9 +65,8 @@ class LinkedList(object):
 		if self.head is None:
 			raise ValueError("nothing to pop")
 			return
-		
 		node = self.head
-		
+		self._size -= 1
 		if node.next == None:
 			self.head = None
 			return True
@@ -83,6 +80,7 @@ class LinkedList(object):
 		if self.head is None:
 			raise ValueError("nothing to pop")
 			return
+		self._size -= 1	
 		self.head = self.head.next
 
 	def top_back(self):
@@ -106,6 +104,7 @@ class LinkedList(object):
 			return True
 		if self.head.data == data:
 			self.head = self.head.next
+			self._size -= 1
 			return True
 		node = self.head
 		while node.next is not None:
@@ -115,7 +114,8 @@ class LinkedList(object):
 		if node.next is None:
 			raise ValueError("item not in list")			
 		else:
-			node.next = node.next.next	
+			node.next = node.next.next
+			self._size -= 1	
 			return True
 
 	def _reverse_iterative(self):
@@ -135,10 +135,7 @@ class LinkedList(object):
 		if not curr:
 			self.head = prev
 			return self.head 
-			
-
 		self._reverse_recurrsive(curr,curr.next)
-	
 		curr.next = prev
 	
 	def reverse(self, method = "iterative"):

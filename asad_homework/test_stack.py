@@ -67,8 +67,9 @@ class StackTests(unittest.TestCase):
 		stack = Stack()
 		
 		# Act
+		size = stack.size()
 		# Assert
-		self.assertEqual(0, stack.size())
+		self.assertEqual(0, size)
 
 	def test_size_when_non_empty_stack(self):
 		# Arrange
@@ -76,8 +77,9 @@ class StackTests(unittest.TestCase):
 		stack.push("Umair")
 		
 		# Act
+		size = stack.size()
 		# Assert
-		self.assertEqual(1, stack.size())
+		self.assertEqual(1, size)
 
 	def test_isEmpty_when_empty_stack(self):
 		# Arrange
