@@ -48,6 +48,7 @@ printArr=(arr)=>{
     }    
     printArr(arr.slice(0,arr.length-1))
     arra.push(arr[arr.length-1])
+    console.log(arr[arr.length-1])
 }
 
 printArrInReverse=(arr)=>{
@@ -55,6 +56,7 @@ printArrInReverse=(arr)=>{
         return
     }    
     arra.push(arr[arr.length-1])
+    console.log(arr[arr.length-1])
     printArrInReverse(arr.slice(0,arr.length-1))   
 }
 
@@ -86,22 +88,23 @@ printStringInReverse= (str)=>{
         return
     }
     string.push(str[str.length-1])
+    console.log(str[str.length-1])
     printStringInReverse(str.slice(0,str.length-1))    
 }
 
 
 // tests
 
-let string = []
-printStringInReverse("asad")
-assert.ok(string,"dasa")
+// let string = []
+// printStringInReverse("asad")
+// assert.ok(string,"dasa")
 
 
 
 
 
-var N=2
-print_Negative_N_to_N(N) // -2,-1,0,1,2
+// var N=2
+// print_Negative_N_to_N(N) // -2,-1,0,1,2
 
 
 
@@ -109,35 +112,37 @@ print_Negative_N_to_N(N) // -2,-1,0,1,2
 
 
 
-print_0toN(4) // 0,1,2,3,4
+// print_0toN(4) // 0,1,2,3,4
 
 
 
 
 
-let arra =[]
-let array =[1,2,3]
+// let arra =[]
+// let array =[1,2,3]
 
-printArrInReverse(array)
-assert.ok(arra,[3,2,1])
-
-
-printArr(array)
-assert.ok(arra ,[1,2,3])
+// printArrInReverse(array)
+// assert.ok(arra,[3,2,1])
 
 
-assert.equal(printSumArr(array),6)
+// printArr(array)
+// assert.ok(arra ,[1,2,3])
+
+
+// assert.equal(printSumArr(array),6)
+// console.log(printSumArr(array))
 
 
 
+// let array1 = []
+// assert.equal(printSumArr(array1), 0)
+// console.log(printSumArr(array1))
 
-let array1 = []
-assert.equal(printSumArr(array1), 0)
 
 
-let array2 = [1,-2,-3]
-assert.equal(printSumArr(array2),-4)
-
+// let array2 = [1,-2,-3]
+// assert.equal(printSumArr(array2),-4)
+// console.log(printSumArr(array2))
 
 
 
@@ -161,5 +166,5 @@ linkedlist.add_back(2)
 linkedlist.add_back("3")
 linkedlist.add_back(4)
 
-printLinkedList(linkedlist.head)
+// printLinkedList(linkedlist.head)
 printLinkedListInReverse(linkedlist.head)
